@@ -42,8 +42,6 @@ seda$gshi <- as.numeric(seda$gshi)
 # Rename variable
 names(seda)[names(seda) == "stateabb"] <- "state"
 
-# TODO: learn what other recodes from Andrew.
-
 
 # Create data.table for Alabama data.
-al_seda <- seda[stateabb == "AL"]
+al_seda <- seda[state == "AL"]

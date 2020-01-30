@@ -3,7 +3,7 @@
 
 /// Set Working Drive ///
 cd " "
-import delimited SEDA_District.csv, varnames(1) case(preserve)
+import delimited Data/SEDA_District.csv, varnames(1) case(preserve)
 
 /// Variable lables ///
 
