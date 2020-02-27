@@ -10,10 +10,10 @@
 library(data.table)
 library(readxl)
 library(Hmisc)
-seda <- read.csv("Data/SEDA_District.csv", header = TRUE)
+al_seda <- read.csv("Data/SEDA_AL_District.csv", header = TRUE)
 
 # Convert seda to data.table.
-seda <- setDT(seda)
+al_seda <- setDT(al_seda)
 
 # create variable-label pairs.
 lbcov <- read_xlsx("Documents/Codebooks/seda_codebook_cov_geodist_v30.xlsx", 
@@ -30,18 +30,17 @@ lbs <- data.frame(rbind(lbcov, lbcw, lbgd))
 lbs <- lbs[!duplicated(lbs$variable), ]
 
 # Attach labels to variables using label data frame.
-label(seda) <- as.list(lbs$label[match(names(seda), lbs$variable)])
+label(al_seda) <- as.list(lbs$label[match(names(al_seda), lbs$variable)])
 
 ####### Clean variables #######
 
 
-seda$gshi <- as.character(seda$gshi)
-seda$gshi[seda$gshi == "Pre-Kindergarten"] <- "0"
-seda$gshi <- as.numeric(seda$gshi)
+al_seda$gshi <- as.character(al_seda$gshi)
+al_seda$gshi[al_seda$gshi == "Pre-Kindergarten"] <- "0"
+al_seda$gshi <- as.numeric(al_seda$gshi)
 
 # Rename variable
-names(seda)[names(seda) == "stateabb"] <- "state"
+names(al_seda)[names(al_seda) == "stateabb"] <- "state"
 
 
-# Create data.table for Alabama data.
-al_seda <- seda[state == "AL"]
+
